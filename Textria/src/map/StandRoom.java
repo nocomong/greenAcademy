@@ -1,9 +1,13 @@
 package map;
 
-public class TutorialZone extends MapBasicData{
+public class StandRoom extends MapBasicData{
 
-	String mapName = "튜토리얼존";
+	mapName = "대기방";
+	mapNum = 1;
 	
+	public StandRoom() {
+		System.out.print(mapName + "에 입장 하셨습니다.");
+	}
 	
 	@Override
 	public void mapEnterPrint() {
@@ -15,12 +19,10 @@ public class TutorialZone extends MapBasicData{
 	public void mapInfoPrint() {
 		// TODO Auto-generated method stub
 		System.out.println("현재 지역은 "+mapName+" 입니다.");
-//		System.out.println("현재 지역에 아래의 몬스터가 있습니다.");
-//		for(int i = 0 ; i < MAXCOUNT ; i++) {
-//		System.out.println(MobName);
+
 	}
 
-	
+}
 	
 	
 	

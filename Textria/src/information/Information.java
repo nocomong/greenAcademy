@@ -9,6 +9,7 @@ public class Information {
 		//필드 선언
 		String chrName;
 		String chrClass;
+		
 		int level;
 		int exp;
 		int str;
@@ -27,6 +28,7 @@ public class Information {
 			
 			this.chrName = _chrName;
 			this.chrClass = _chrClass;
+			
 			level = 1;
 			exp = 0;
 			str = 10;
@@ -48,6 +50,14 @@ public class Information {
 			this.chrName = chrName;
 		}
 
+
+		public String getChrClass() {
+			return chrClass;
+		}
+
+		public void setChrClass(String chrClass) {
+			this.chrClass = chrClass;
+		}
 
 		public int getLevel() {
 			return level;

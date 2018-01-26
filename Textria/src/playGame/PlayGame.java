@@ -2,7 +2,7 @@ package playGame;
 
 import charector.NewChr;
 
-public class PlayGamm {
+public class PlayGame {
 
 	public static void main(String[] args) {
 
