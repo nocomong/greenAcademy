@@ -25,7 +25,7 @@ public class NewChr extends Information{
 		}
 //		else if(selectClass == archer) {
 		else{
-			chrClass = "궁수" ;
+			chrClass = "궁수1" ;
 		
 		System.out.println("캐릭터 명 : "+newChr);
 		System.out.println("클래스 : "+chrClass);
