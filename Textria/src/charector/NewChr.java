@@ -2,8 +2,7 @@ package charector;
 
 import java.util.Scanner;
 
-import Abc.CarSet;
-import information.Information;
+import information.Information.ChrInfo;
 
 public class NewChr {
 	
@@ -18,13 +17,11 @@ public class NewChr {
 			
 			System.out.println("클래스를 선택 하세요.");
 			System.out.println("1. 검사 / 2. 궁수" );
-			
+			ChrInfo chrInfo = new ChrInfo();	
 		int chrSelect = scan.nextInt();
 		
-		Information chrInfo = new Information();
-		
 		if(chrSelect == 1) {
-			chrInfo.setChrClass = "검사";
+			chrInfo.getChrClass()="검사";
 		}
 //		else if(selectClass == archer) {
 		else{

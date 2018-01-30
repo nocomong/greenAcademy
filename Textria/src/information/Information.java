@@ -21,10 +21,13 @@ public class Information {
 		double healthPoint;
 //		double critical;
 		
-		
+		public ChrInfo() {
+			
+		}
+			
 		//캐릭터, 몬스터 생성자
 		public ChrInfo(String _chrName, String _chrClass) {
-			System.out.println("정보를 로드 합니다.");
+
 			
 			this.chrName = _chrName;
 			this.chrClass = _chrClass;
