@@ -17,6 +17,15 @@ public class CombatData {
 		System.out.println("전투를 시작 합니다.");
 	}
 	
+	public void pause() {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 
 	
 

@@ -10,12 +10,25 @@ public class ChrData {
 	int str;
 	int agi;
 	int health;
+	int maxHp;
 	
 	int atkPoint;
 	int shildPoint;
 	
 	
 	
+
+	public int getMaxHp() {
+		return maxHp;
+	}
+
+
+
+	public void setMaxHp(int maxHp) {
+		this.maxHp = maxHp;
+	}
+
+
 
 	public int getAtkPoint() {
 		return atkPoint;
@@ -139,7 +152,7 @@ public class ChrData {
 		System.out.println("캐릭터 명 : "+chrName );
 		System.out.println("클래스 : "+chrClass );
 		System.out.println("레벨 : "+level );
-		System.out.println("경험치 : "+exp );
+		System.out.println("경험치 : "+exp+"%" );
 		System.out.println("힘 : "+str );
 		System.out.println("민첩 : "+agi );
 		System.out.println("체력 : "+health );
