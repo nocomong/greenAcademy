@@ -171,25 +171,25 @@ public class ChrData {
 	
 	public void useItem() {
 		
-		if(health>=maxHp) {
+		if(health < maxHp) {
+			int realHealth = health;
+			health+=100;
 			
+			if( health < maxHp) {
+				System.out.println("체력이 100 회복 되었습니다. 현재 체력 ("+health+")");
+			}else {
+				int temp = maxHp - realHealth;
+				health = maxHp;
+				System.out.println("체력이 "+temp+" 회복 되었습니다.현재 체력 ("+health+")");
+				
+			}
+					
+		}else {
 			System.out.println("더 이상 체력을 회복할 수 없습니다.");
 			
-		}else {
-			health+=150;
-				if(health > maxHp) {
-					health = maxHp;
-					int temp = health-maxHp;
-					System.out.print("체력이 "+temp+" 회복 되었습니다.");
-					System.out.println("현재 체력 : "+health);
-					
-				}else {
-					System.out.print("체력이 150 회복 되었습니다.");
-					System.out.println("현재 체력 : "+health);
-				}
-			
 		}
-	}
+		
+	} 
 	
 	
 

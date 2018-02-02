@@ -20,7 +20,7 @@ public class PlayGame {
 		System.out.println("텍스트리아에 오신것을 환영 합니다.");
 		
 		do {
-			System.out.print("6자 이내의 캐릭터명을 입력 해주세요 : ");
+			System.out.print("캐릭터명을 입력 해주세요(6자이내) : ");
 			chrData.setChrName(scan.next());
 			}
 		
@@ -32,6 +32,7 @@ public class PlayGame {
 		System.out.println("클래스를 선택 하세요.");
 		System.out.print("1. 검사 / 2. 궁수 : ");
 		int selectClass=0;
+		while(true) {
 		try {
 		selectClass = scan.nextInt();
 		
@@ -39,24 +40,33 @@ public class PlayGame {
 			chrData.setChrClass("검사");
 			chrData.setStr(20+chrData.getLevel()*3);
 			chrData.setAgi(10+chrData.getLevel()*3);
-			chrData.setMaxHp(30+chrData.getLevel()*3);
+			chrData.setMaxHp((30+chrData.getLevel())*2);
 			chrData.setHealth(chrData.getMaxHp());
 			chrData.setAtkPoint(chrData.getStr()*3+chrData.getAgi()*2);
 			chrData.setShildPoint(chrData.getStr()*3+chrData.getHealth());
+			break;
 			
 		}else if(selectClass==2) {
 			chrData.setChrClass("궁수");
 			chrData.setStr(10+chrData.getLevel()*3);
 			chrData.setAgi(30+chrData.getLevel()*3);
-			chrData.setMaxHp(20+chrData.getLevel()*3);
+			chrData.setMaxHp((20+chrData.getLevel())*2);
 			chrData.setHealth(chrData.getMaxHp());
 			chrData.setAtkPoint(chrData.getStr()*2+chrData.getAgi()*3);
 			chrData.setShildPoint(chrData.getStr()*2+chrData.getHealth());
+			break;
+		}else {
+			scan = new Scanner(System.in);
+			System.out.println("클래스를 선택 하세요.");
+			System.out.print("1. 검사 / 2. 궁수 : ");
 		}
+
 		}catch(Exception e) {
-			System.out.println("클래스를 선택 해주세요");
+			scan = new Scanner(System.in);
+			System.out.println("클래스를 선택 하세요.");
+			System.out.print("1. 검사 / 2. 궁수 : ");
 		}
-		
+		}
 		
 		System.out.println("캐릭터 명 : "+chrData.getChrName());
 		System.out.println("클래스 : "+chrData.getChrClass());
@@ -118,6 +128,7 @@ public class PlayGame {
 		if(keyWord.equals("새로고침")) {
 			try {
 				mobArray.clear();
+				deadMob.clear();
 			
 			}
 			catch(Exception e)	{
@@ -125,9 +136,13 @@ public class PlayGame {
 			}
 			
 			mobArray.add(mobRabbit);
+			mobRabbit.setHealth(mobRabbit.getMaxHealth());
 			mobArray.add(mobWolf);
+			mobWolf.setHealth(mobWolf.getMaxHealth());
 			mobArray.add(mobGoblin);
+			mobGoblin.setHealth(mobGoblin.getMaxHealth());
 			mobArray.add(mobOgre);
+			mobOgre.setHealth(mobOgre.getMaxHealth());
 			mobArray.add(mobGozila);
 			try {	
 				for(int i =0 ; i < mobArray.size() ; i++ ) {
@@ -147,12 +162,12 @@ public class PlayGame {
 			String rabbit = keyWord.substring(1,keyWord.length());
 			
 			if(deadMob.containsKey(rabbit)==true) {
-				System.out.println("토끼가 죽었습니다.");
+				System.out.println("토끼는 죽었습니다.");
 			}else {
 				System.out.println("토끼와 전투를 시작 합니다.");	
 				while(chrData.getHealth()>0 && mobRabbit.getHealth() >0) {
 					combat.pause();
-					System.out.println(chrData.getChrName()+"이"+mobRabbit.getMobName()+"을(를) 공격 합니다.");
+					System.out.println(chrData.getChrName()+"이 "+mobRabbit.getMobName()+"을(를) 공격 합니다.");
 					combat.pause();
 					System.out.print(chrData.getAtkPoint()+"피해를 주었습니다.");
 					
@@ -163,16 +178,15 @@ public class PlayGame {
 						mobArray.remove(0);
 						deadMob.put(mobRabbit.getMobName(), 1); //죽은 몹 등록
 						combat.pause();
-						chrData.setExp(chrData.getExp()+mobRabbit.getLevel()*20);
+						chrData.setExp(chrData.getExp()+mobRabbit.getLevel()*30);
 						combat.pause();
-						System.out.println("경험치 "+mobRabbit.getLevel()*20+"% 를 획득 하였습니다.");
+						System.out.println("경험치 "+mobRabbit.getLevel()*30+"% 를 획득 하였습니다.");
+										
 						combat.pause();
-						
-						combat.pause();
-						if(chrData.getExp()>100) {
+						if(chrData.getExp()>=100) {
 							chrData.setLevel(chrData.getLevel()+1);
 							chrData.chrLevelUp(chrData.getLevel());
-							System.out.println("레벨이 상승 하였습니다. 현재 레벨 :"+chrData.getLevel());
+							System.out.println("레벨이 상승 하였습니다.");
 							chrData.setExp(chrData.getExp()-100);
 							chrData.chrPrint();
 							
@@ -206,7 +220,7 @@ public class PlayGame {
 			String wolf = keyWord.substring(1,keyWord.length());
 			
 			if(deadMob.containsKey(wolf)==true) {
-				System.out.println("늑대가 죽었습니다.");
+				System.out.println("늑대는 죽었습니다.");
 			}else {
 					
 			System.out.println("늑대와 전투를 시작 합니다.");
@@ -229,10 +243,10 @@ public class PlayGame {
 					combat.pause();
 					
 					
-					if(chrData.getExp()>100) {
+					if(chrData.getExp()>=100) {
 						chrData.setLevel(chrData.getLevel()+1);
 						chrData.chrLevelUp(chrData.getLevel());
-						System.out.println("레벨이 상승 하였습니다. 현재 레벨 :"+chrData.getLevel());
+						System.out.println("레벨이 상승 하였습니다.");
 						chrData.setExp(chrData.getExp()-100);
 						chrData.chrPrint();
 						
@@ -265,7 +279,7 @@ public class PlayGame {
 			String goblin = keyWord.substring(1,keyWord.length());
 			
 			if(deadMob.containsKey(goblin)==true) {
-				System.out.println("고블린이 죽었습니다.");
+				System.out.println("고블린은 죽었습니다.");
 			}else {
 			System.out.println("고블린과 전투를 시작 합니다.");
 			while(chrData.getHealth()>0 && mobGoblin.getHealth() >0) {
@@ -286,10 +300,10 @@ public class PlayGame {
 					System.out.println("경험치 "+mobGoblin.getLevel()*20+"% 를 획득 하였습니다.");
 					
 					combat.pause();
-					if(chrData.getExp()>100) {
+					if(chrData.getExp()>=100) {
 						chrData.setLevel(chrData.getLevel()+1);
 						chrData.chrLevelUp(chrData.getLevel());
-						System.out.println("레벨이 상승 하였습니다. 현재 레벨 :"+chrData.getLevel());
+						System.out.println("레벨이 상승 하였습니다.");
 						chrData.setExp(chrData.getExp()-100);
 						chrData.chrPrint();
 						
@@ -324,7 +338,7 @@ public class PlayGame {
 			String ogre = keyWord.substring(1,keyWord.length());
 			
 			if(deadMob.containsKey(ogre)==true) {
-				System.out.println("오우거가 죽었습니다.");
+				System.out.println("오우거는 죽었습니다.");
 			}else {
 			System.out.println("오우거와 전투를 시작 합니다.");
 			while(chrData.getHealth()>0 && mobGoblin.getHealth() >0) {
@@ -345,10 +359,10 @@ public class PlayGame {
 					System.out.println("경험치 "+mobOgre.getLevel()*20+"% 를 획득 하였습니다.");
 					combat.pause();
 				
-					if(chrData.getExp()>100) {
+					if(chrData.getExp()>=100) {
 						chrData.setLevel(chrData.getLevel()+1);
 						chrData.chrLevelUp(chrData.getLevel());
-						System.out.println("레벨이 상승 하였습니다. 현재 레벨 :"+chrData.getLevel());
+						System.out.println("레벨이 상승 하였습니다.");
 						chrData.setExp(chrData.getExp()-100);
 						chrData.chrPrint();
 						

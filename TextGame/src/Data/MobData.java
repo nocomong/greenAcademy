@@ -12,6 +12,7 @@ public class MobData {
 	int health=100;
 	int atkPoint;
 	int shildPoint;
+	int maxHealth;
 	
 //	ArrayList<String> mobName = new ArrayList<String>();
 //	ArrayList<Integer> mobLevel = new ArrayList<Integer>();
@@ -21,15 +22,24 @@ public class MobData {
 	public MobData(String mobName, int mobLevel) {
 		this.mobName = mobName;
 		this.level = mobLevel;
-		str +=mobLevel*3;
-		agi +=mobLevel*3;
+		str +=mobLevel*2;
+		agi +=mobLevel*2;
 		health =health*mobLevel;
+		maxHealth = health;
 		atkPoint = this.str + this.agi;
 		shildPoint = this.str + this.health;
 					
 	}
 	
 	
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
+	}
+
 	public int getAtkPoint() {
 		return atkPoint;
 	}
